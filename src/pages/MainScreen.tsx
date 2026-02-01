@@ -7,6 +7,12 @@ type Page = "dashboard" | "about";
 
 export default function MainScreen() {
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleNavigation = (page: Page) => {
+    setCurrentPage(page);
+    setIsMenuOpen(false); // Ferme le menu après sélection
+  };
 
   const renderContent = () => {
     switch (currentPage) {
@@ -22,25 +28,45 @@ export default function MainScreen() {
   return (
     <div className="main-screen">
       <nav className="main-nav">
-        <div className="flex justify-between items-center h-16">
-            <h1>Personal Dashboard</h1>
-        </div>
-            <div className="btn">
-                <button
-            className={currentPage === "dashboard" ? "active" : ""}
-            onClick={() => setCurrentPage("dashboard")}
+        <div className="nav-container">
+          <h1>LifeBoard</h1>
+          
+          {/* Bouton burger */}
+          <button 
+            className={`burger-btn ${isMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Menu navigation */}
+          <div className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
+            <button
+              className={currentPage === "dashboard" ? "active" : ""}
+              onClick={() => handleNavigation("dashboard")}
             >
-            Dashboard
+              Dashboard
             </button>
             <button
-            className={currentPage === "about" ? "active" : ""}
-            onClick={() => setCurrentPage("about")}
+              className={currentPage === "about" ? "active" : ""}
+              onClick={() => handleNavigation("about")}
             >
-            About
+              About
             </button>
+          </div>
         </div>
-        
       </nav>
+
+      {/* Overlay pour fermer le menu en cliquant à l'extérieur */}
+      {isMenuOpen && (
+        <div 
+          className="menu-overlay" 
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
 
       <main className="main-content">{renderContent()}</main>
     </div>

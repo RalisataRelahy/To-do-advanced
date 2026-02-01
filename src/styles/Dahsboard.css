@@ -1,121 +1,10 @@
 .dashboard {
   max-width: 100%;
-  /* margin: auto; */
-  /* padding: 2rem; */
+  padding: 1rem;
 }
 
-/* Conteneur tableau */
-.dashboard-table {
-  width: 100%;
-  border-collapse: collapse; /* fusion des bordures */
-  margin-top: 2rem;
-  background: var(--card);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-/* Header */
-.dashboard-table thead {
-  background-color: var(--primary);
-  color: white;
-  text-align: left;
-}
-
-.dashboard-table thead th {
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-}
-
-/* Lignes du tableau */
-.dashboard-table tbody tr {
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-}
-
-.dashboard-table tbody tr:hover {
-  background-color: #f1f5f9; /* léger survol */
-}
-
-/* Cellules */
-.dashboard-table td {
-  padding: 0.75rem 1rem;
-}
-
-/* Checkbox et boutons */
-.dashboard-table input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--primary);
-}
-
-.dashboard-table button {
-  background-color: #ef4444; /* rouge clair pour delete */
-  padding: 0.25rem 0.5rem;
-  font-size: 0.85rem;
-}
-
-.dashboard-table button:hover {
-  background-color: #dc2626;
-}
-
-/* Ligne complétée */
-.dashboard-table tbody tr.done {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-.table-wrapper {
-  overflow-x: auto; /* permet le scroll si trop large */
-  width: 100%;
-}
-
-@media (max-width: 600px) {
-  .dashboard-table,
-  .dashboard-table thead,
-  .dashboard-table tbody,
-  .dashboard-table th,
-  .dashboard-table td,
-  .dashboard-table tr {
-    display: block;
-  }
-
-  .dashboard-table thead tr {
-    display: none; /* on cache l’entête */
-  }
-
-  .dashboard-table tbody tr {
-    margin-bottom: 1rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.5rem;
-  }
-
-  .dashboard-table td {
-    padding: 0.25rem 0.5rem;
-    text-align: right;
-    position: relative;
-  }
-
-  .dashboard-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0.5rem;
-    font-weight: 600;
-    text-align: left;
-  }
-}
-header{
-    height: 100px;
-    padding: 20px 10px;
-    background-color: var(--primary);
-    color: white;
-    font-size: 25px;
-}
-.stats-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+/* Conteneur des statistiques */
+.stat-container {
   margin-bottom: 2rem;
 }
 
@@ -129,16 +18,268 @@ header{
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.stats-summary p{
-    display: flex;
-    align-items: center;
-    margin: 5px 0px;
+.stats-summary p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0px;
+  font-size: 1rem;
 }
 
-.stats-summary .progress{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.stats-summary .progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Header */
+header {
+  height: auto;
+  min-height: 80px;
+  padding: 20px 10px;
+  background-color: var(--primary);
+  color: white;
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
+  display: flex;
+  align-items: center;
+}
+
+/* Conteneur tableau */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Header du tableau */
+.dashboard-table thead {
+  background-color: var(--primary);
+  color: white;
+  text-align: left;
+}
+
+.dashboard-table thead th {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Lignes du tableau */
+.dashboard-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Cellules */
+.dashboard-table td {
+  padding: 0.75rem 1rem;
+}
+
+/* Checkbox et boutons */
+.dashboard-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.dashboard-table button {
+  background-color: #ef4444;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dashboard-table button:hover {
+  background-color: #dc2626;
+}
+
+/* Ligne complétée */
+.dashboard-table tbody tr.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ========================================
+   RESPONSIVE - TABLETTES (max 768px)
+======================================== */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 0.75rem;
+  }
+
+  header {
+    min-height: 70px;
+    padding: 15px 10px;
+  }
+
+  .stats-summary {
+    padding: 0.875rem;
+  }
+
+  .stats-summary p {
+    font-size: 0.95rem;
+  }
+
+  .dashboard-table thead th {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .dashboard-table td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (max 600px)
+======================================== */
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 0.5rem;
+  }
+
+  header {
+    min-height: 60px;
+    padding: 10px;
+  }
+
+  /* Stats en colonne sur mobile */
+  .stats-summary {
+    padding: 0.75rem;
+  }
+
+  .stats-summary p {
+    font-size: 0.9rem;
+  }
+
+  .stats-summary .progress {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  /* Transformation du tableau en cartes */
+  .dashboard-table,
+  .dashboard-table thead,
+  .dashboard-table tbody,
+  .dashboard-table th,
+  .dashboard-table td,
+  .dashboard-table tr {
+    display: block;
+  }
+
+  .dashboard-table thead tr {
+    display: none;
+  }
+
+  .dashboard-table tbody tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    background: var(--card);
+  }
+
+  .dashboard-table tbody tr:hover {
+    background-color: var(--card);
+  }
+
+  .dashboard-table td {
+    padding: 0.5rem 0;
+    text-align: left;
+    position: relative;
+    padding-left: 45%;
+    border: none;
+  }
+
+  .dashboard-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 40%;
+    padding-right: 10px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  /* Premier td (checkbox) - centré */
+  .dashboard-table td:first-child {
+    padding-left: 0;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .dashboard-table td:first-child::before {
+    width: 100%;
+    position: static;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Dernier td (bouton) */
+  .dashboard-table td:last-child {
+    padding-left: 0;
+    text-align: center;
+    padding-top: 0.75rem;
+  }
+
+  .dashboard-table td:last-child::before {
+    display: none;
+  }
+
+  .dashboard-table button {
+    width: 100%;
+    padding: 0.625rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - TRÈS PETIT MOBILE (max 400px)
+======================================== */
+@media (max-width: 400px) {
+  .dashboard {
+    padding: 0.25rem;
+  }
+
+  header {
+    font-size: 1.1rem;
+    padding: 8px;
+  }
+
+  .stats-summary {
+    padding: 0.625rem;
+  }
+
+  .stats-summary p {
+    font-size: 0.85rem;
+  }
+
+  .dashboard-table td {
+    font-size: 0.85rem;
+    padding-left: 40%;
+  }
 }

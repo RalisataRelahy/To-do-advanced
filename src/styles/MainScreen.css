@@ -1,0 +1,45 @@
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.btn button {
+  padding: 0.5rem 1rem;
+  margin: 10px 20px;
+  border: none;
+  width: 150px;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.main-nav button:hover {
+  transform: translateY(-1px);
+}
+
+.main-nav button.active {
+  background: #3730a3; /* couleur plus foncée */
+}
+
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}

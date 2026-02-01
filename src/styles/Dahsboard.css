@@ -1,0 +1,144 @@
+.dashboard {
+  max-width: 100%;
+  /* margin: auto; */
+  /* padding: 2rem; */
+}
+
+/* Conteneur tableau */
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse; /* fusion des bordures */
+  margin-top: 2rem;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Header */
+.dashboard-table thead {
+  background-color: var(--primary);
+  color: white;
+  text-align: left;
+}
+
+.dashboard-table thead th {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+/* Lignes du tableau */
+.dashboard-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: #f1f5f9; /* léger survol */
+}
+
+/* Cellules */
+.dashboard-table td {
+  padding: 0.75rem 1rem;
+}
+
+/* Checkbox et boutons */
+.dashboard-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.dashboard-table button {
+  background-color: #ef4444; /* rouge clair pour delete */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.dashboard-table button:hover {
+  background-color: #dc2626;
+}
+
+/* Ligne complétée */
+.dashboard-table tbody tr.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* permet le scroll si trop large */
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .dashboard-table,
+  .dashboard-table thead,
+  .dashboard-table tbody,
+  .dashboard-table th,
+  .dashboard-table td,
+  .dashboard-table tr {
+    display: block;
+  }
+
+  .dashboard-table thead tr {
+    display: none; /* on cache l’entête */
+  }
+
+  .dashboard-table tbody tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+  }
+
+  .dashboard-table td {
+    padding: 0.25rem 0.5rem;
+    text-align: right;
+    position: relative;
+  }
+
+  .dashboard-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: 600;
+    text-align: left;
+  }
+}
+header{
+    height: 100px;
+    padding: 20px 10px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 25px;
+}
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stats-summary {
+  min-width: 200px;
+  background: var(--card);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.stats-summary p{
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+.stats-summary .progress{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

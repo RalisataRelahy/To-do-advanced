@@ -6,12 +6,16 @@ import { getStats } from "../utils/stats";
 import "../styles/Dahsboard.css";
 import StatsChart from "../components/statsCard";
 import ProgressBar from "../components/progressBar";
-export default function Dashboard() {
+
+interface DashProps{
+  user:any;
+}
+export default function Dashboard({user}:DashProps) {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const daysMap = [1, 2, 3, 4, 5, 6, 0]; // Lundi=1 ... Dimanche=0
 
 const completedByDay = daysMap.map(dayNum =>
-  tasks.filter(t => t.completed && new Date(t.createdAt).getDay() === dayNum).length
+  tasks.filter(t => t.status==="done"&& new Date(t.createdAt).getDay() === dayNum).length
 );
 
 const totalByDay = daysMap.map(dayNum =>
@@ -26,7 +30,8 @@ const totalByDay = daysMap.map(dayNum =>
       {
         id: crypto.randomUUID(),
         title,
-        completed: false,
+        status: "pending",
+
         createdAt: new Date().toISOString(),
       },
     ]);

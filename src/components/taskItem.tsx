@@ -9,11 +9,11 @@ interface Props {
 
 export default function TaskItem({ task, onToggle, onDelete }: Props) {
   return (
-<tr className={task.completed ? "done" : ""}>
+<tr className={task.status==="done"?"done" : ""}>
   <td data-label="Fait ?">
     <input
       type="checkbox"
-      checked={task.completed}
+      checked={task.status==="done"}
       onChange={() => onToggle(task.id)}
     />
   </td>

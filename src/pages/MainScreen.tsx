@@ -4,8 +4,10 @@ import About from "./about";
 import "../styles/MainScreen.css";
 
 type Page = "dashboard" | "about";
-
-export default function MainScreen() {
+interface MainScreenProps{
+  user:any
+}
+export default function MainScreen({user}: MainScreenProps) {
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,11 +19,11 @@ export default function MainScreen() {
   const renderContent = () => {
     switch (currentPage) {
       case "dashboard":
-        return <Dashboard />;
+        return <Dashboard user={user}/>;
       case "about":
         return <About />;
       default:
-        return <Dashboard />;
+        return <Dashboard user={user} />;
     }
   };
 

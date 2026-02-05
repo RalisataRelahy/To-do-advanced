@@ -1,225 +1,85 @@
-/* taskItem.css */
-
-/* Style de base pour les lignes */
-tr {
-  transition: all 0.3s ease;
-}
-
 tr.done {
-  opacity: 0.6;
-}
-
-tr.done .task-title {
+  opacity: 0.65;
   text-decoration: line-through;
-  color: #64748b;
+  background-color: rgba(0, 255, 100, 0.05);
 }
 
-/* Style du titre de tâche */
-.task-title {
+.checkbox-cell {
+  text-align: center;
+  width: 50px;
+}
+
+.task-title-cell {
   font-weight: 500;
-  color: #1e293b;
-  word-break: break-word;
 }
 
-/* Style du bouton */
-.btn {
-  /* background-color: #ef4444; */
+.task-title {
+  display: block;
+  color: var(--text-primary);
+}
+
+.task-description-preview {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+.date-text {
+  white-space: nowrap;
+}
+
+.due-hour {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.priority-badge {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.priority-low    { background: #d1fae5; color: #065f46; }
+.priority-medium { background: #fef3c7; color: #92400e; }
+.priority-high   { background: #fee2e2; color: #991b1b; }
+.priority-urgent { background: #fecaca; color: #7f1d1d; font-weight: 600; }
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-pill {
+  padding: 0.2rem 0.6rem;
+  background: #e5e7eb;
+  color: #374151;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.no-tags {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.actions-cell {
+  text-align: center;
+  width: 60px;
+}
+
+.btn-delete {
+  background: none;
   border: none;
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  min-height: 40px;
+  color: #ef4444;
+  transition: transform 0.15s;
 }
 
-.btn:hover {
-  /* background-color: #dc2626; */
-  transform: scale(1.05);
-}
-
-.btn:active {
-  transform: scale(0.95);
-}
-
-/* Checkbox personnalisée */
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--primary);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-input[type="checkbox"]:hover {
-  transform: scale(1.1);
-}
-
-input[type="checkbox"]:checked {
-  filter: brightness(1.1);
-}
-
-/* ========================================
-   RESPONSIVE - TABLETTES (max 768px)
-======================================== */
-@media (max-width: 768px) {
-  .task-title {
-    font-size: 0.95rem;
-  }
-
-  .btn {
-    padding: 0.45rem 0.65rem;
-    font-size: 1.1rem;
-    min-width: 38px;
-    min-height: 38px;
-  }
-
-  input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* ========================================
-   RESPONSIVE - MOBILE (max 600px)
-======================================== */
-@media (max-width: 600px) {
-  /* Espacement entre les cartes */
-  tr {
-    display: block;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-    background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  tr.done {
-    background-color: #f8fafc;
-  }
-
-  /* Style des cellules en mode mobile */
-  td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0 !important;
-    border: none !important;
-    text-align: left !important;
-    position: relative;
-  }
-
-  td::before {
-    font-weight: 600;
-    color: #475569;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    width: auto !important;
-    position: static !important;
-    margin-right: 1rem;
-  }
-
-  /* Cellule checkbox */
-  td:first-child {
-    justify-content: space-between;
-    padding-bottom: 0.5rem !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-  }
-
-  /* Cellule titre */
-  td:nth-child(2) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.75rem 0 !important;
-  }
-
-  td:nth-child(2)::before {
-    margin-bottom: 0.5rem;
-  }
-
-  .task-title {
-    font-size: 1rem;
-    width: 100%;
-    line-height: 1.5;
-  }
-
-  /* Cellule date */
-  td:nth-child(3) {
-    font-size: 0.9rem;
-    color: #64748b;
-  }
-
-  /* Cellule bouton */
-  td:last-child {
-    justify-content: space-between;
-    padding-top: 1rem !important;
-    border-top: 1px solid #e2e8f0 !important;
-  }
-
-  .btn {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1.3rem;
-    min-height: 45px;
-    border-radius: 8px;
-  }
-
-  input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-/* ========================================
-   RESPONSIVE - TRÈS PETIT MOBILE (max 400px)
-======================================== */
-@media (max-width: 400px) {
-  tr {
-    padding: 0.875rem;
-  }
-
-  td {
-    padding: 0.625rem 0 !important;
-  }
-
-  td::before {
-    font-size: 0.85rem;
-  }
-
-  .task-title {
-    font-size: 0.95rem;
-  }
-
-  .btn {
-    padding: 0.65rem;
-    font-size: 1.2rem;
-    min-height: 42px;
-  }
-
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-/* Animations */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-tr {
-  animation: slideIn 0.3s ease-out;
+.btn-delete:hover {
+  transform: scale(1.2);
 }

@@ -18,7 +18,56 @@
   top: 0;
   z-index: 100;
 }
+.title-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
+.logo {
+  width: 80px;
+  height: 75px;
+  object-fit: contain;
+  border-radius: 12px;          /* optionnel : coins arrondis */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .app-header {
+    padding: 1rem;
+  }
+
+  .title-header {
+    gap: 0.8rem;
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+  }
+}
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -26,7 +75,7 @@
   padding: 1rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  height: 80px;
+  height: 100px;
 }
 
 .main-nav h1 {

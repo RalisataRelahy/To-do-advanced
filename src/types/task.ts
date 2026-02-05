@@ -11,4 +11,5 @@ export interface Task {
   createdAt: string;       // ISO string
   updatedAt?: string;       // ISO string
   dueDate: string;         // ISO string
+  userId:String;
 }

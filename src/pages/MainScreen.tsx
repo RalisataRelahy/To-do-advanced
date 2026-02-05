@@ -4,10 +4,10 @@ import About from "./about";
 import "../styles/MainScreen.css";
 
 type Page = "dashboard" | "about";
-interface MainScreenProps{
-  user:any
+interface MainScreenProps {
+  user: any
 }
-export default function MainScreen({user}: MainScreenProps) {
+export default function MainScreen({ user }: MainScreenProps) {
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,7 +19,7 @@ export default function MainScreen({user}: MainScreenProps) {
   const renderContent = () => {
     switch (currentPage) {
       case "dashboard":
-        return <Dashboard user={user}/>;
+        return <Dashboard user={user} />;
       case "about":
         return <About />;
       default:
@@ -31,10 +31,20 @@ export default function MainScreen({user}: MainScreenProps) {
     <div className="main-screen">
       <nav className="main-nav">
         <div className="nav-container">
-          <h1>LifeBoard</h1>
-          
+          <div className="title-header">
+            <img
+              src="/logos.png"
+              alt="Logo LifeBoard"
+              width={48}
+              height={48}
+              className="logo"
+            />
+            <h1 className="app-title">LifeBoard</h1>
+          </div>
+
+
           {/* Bouton burger */}
-          <button 
+          <button
             className={`burger-btn ${isMenuOpen ? 'open' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -64,8 +74,8 @@ export default function MainScreen({user}: MainScreenProps) {
 
       {/* Overlay pour fermer le menu en cliquant à l'extérieur */}
       {isMenuOpen && (
-        <div 
-          className="menu-overlay" 
+        <div
+          className="menu-overlay"
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}

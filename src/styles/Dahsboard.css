@@ -72,10 +72,16 @@ header {
 }
 
 .dashboard-table thead th {
+  cursor: pointer;
   padding: 0.75rem 1rem;
   font-weight: 600;
   white-space: nowrap;
 }
+
+.dashboard-table thead th:not(:first-child):hover {
+  color: var(--primary);
+  background-color: #f1f5f9;
+} 
 
 /* Lignes du tableau */
 .dashboard-table tbody tr {

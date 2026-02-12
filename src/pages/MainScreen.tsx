@@ -2,7 +2,9 @@ import { useState } from "react";
 import Dashboard from "./Dashboard";
 import About from "./about";
 import "../styles/MainScreen.css";
-
+// import { getAuth, signOut } from "../services/firebase";
+import { auth } from "../services/firebase";
+import { signOut } from "firebase/auth";
 type Page = "dashboard" | "about";
 interface MainScreenProps {
   user: any
@@ -11,6 +13,17 @@ export default function MainScreen({ user }: MainScreenProps) {
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+
+
+  const handleLogOut = () => {
+    try {
+      signOut(auth);
+      // window.location.href = "/";
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
   const handleNavigation = (page: Page) => {
     setCurrentPage(page);
     setIsMenuOpen(false); // Ferme le menu après sélection
@@ -68,6 +81,7 @@ export default function MainScreen({ user }: MainScreenProps) {
             >
               About
             </button>
+            <button onClick={() => { handleLogOut() }}>Se deconnecter</button>
           </div>
         </div>
       </nav>

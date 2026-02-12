@@ -1,0 +1,693 @@
+/* ===========================
+   VARIABLES CSS
+   =========================== */
+:root {
+    /* Couleurs principales */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+
+    /* Couleurs glass morphism */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Espacements */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===========================
+   PAGE BACKGROUND
+   =========================== */
+.auth-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    overflow: hidden;
+}
+
+/* Effet de particules en arrière-plan */
+.auth-page::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: particleFloat 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ===========================
+   CARD CONTAINER
+   =========================== */
+.auth-card-glass {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: var(--spacing-xl) 2.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--glass-border);
+    animation: fadeInUp var(--transition-slow) ease forwards;
+    transition: transform var(--transition-normal);
+}
+
+.auth-card-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.auth-card-glass:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================
+   TITLE
+   =========================== */
+.auth-title-glass {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: var(--spacing-xl);
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.auth-title-glass::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    margin: var(--spacing-md) auto 0;
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+/* ===========================
+   FORM
+   =========================== */
+.auth-form-glass {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Input Group */
+.auth-input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Label */
+.auth-label-glass {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+}
+
+/* ===========================
+   INPUTS
+   =========================== */
+.auth-input-glass {
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    border-radius: var(--radius-md);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.auth-input-glass::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.auth-input-glass:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.auth-input-glass:hover:not(:focus) {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Input avec icône */
+.auth-input-wrapper {
+    position: relative;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.auth-input-glass.with-icon {
+    padding-left: 2.75rem;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.auth-button-glass {
+    position: relative;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transition: all var(--transition-normal);
+    box-shadow:
+        0 4px 12px rgba(102, 126, 234, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    letter-spacing: 0.02em;
+}
+
+.auth-button-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.auth-button-glass:hover::before {
+    left: 100%;
+}
+
+.auth-button-glass:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 20px rgba(102, 126, 234, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.auth-button-glass:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 8px rgba(102, 126, 234, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.auth-button-glass:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===========================
+   SECONDARY BUTTON (Switch)
+   =========================== */
+.auth-switch-glass {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.auth-switch-glass::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ffd700, #ffed4e);
+    transition: width var(--transition-normal);
+}
+
+.auth-switch-glass:hover {
+    color: #ffd700;
+}
+
+.auth-switch-glass:hover::after {
+    width: 100%;
+}
+
+/* ===========================
+   DIVIDER
+   =========================== */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-divider::before {
+    margin-right: var(--spacing-md);
+}
+
+.auth-divider::after {
+    margin-left: var(--spacing-md);
+}
+
+/* ===========================
+   ERROR & SUCCESS MESSAGES
+   =========================== */
+.auth-error-glass,
+.auth-success-glass {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+    animation: slideIn var(--transition-normal) ease;
+    backdrop-filter: blur(10px);
+}
+
+.auth-error-glass {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fee;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+.auth-success-glass {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #e0ffe0;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+}
+
+/* ===========================
+   CHECKBOX & RADIO
+   =========================== */
+.auth-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.auth-checkbox-glass {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.auth-checkbox-glass:checked {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+}
+
+.auth-checkbox-glass:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.auth-checkbox-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    user-select: none;
+}
+
+/* ===========================
+   LOADING STATE
+   =========================== */
+.auth-loading {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+/* Tablets et petits écrans */
+@media (max-width: 768px) {
+    .auth-page {
+        padding: var(--spacing-md);
+    }
+
+    .auth-card-glass {
+        max-width: 100%;
+        padding: var(--spacing-lg) var(--spacing-xl);
+    }
+
+    .auth-title-glass {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .auth-form-glass {
+        gap: var(--spacing-md);
+    }
+
+    .auth-input-glass,
+    .auth-button-glass {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+    :root {
+        --spacing-xl: 1.5rem;
+        --spacing-lg: 1rem;
+    }
+
+    .auth-page {
+        padding: var(--spacing-sm);
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .auth-card-glass {
+        padding: var(--spacing-lg) var(--spacing-md);
+        border-radius: var(--radius-md);
+    }
+
+    .auth-title-glass {
+        font-size: 1.375rem;
+    }
+
+    .auth-input-glass,
+    .auth-button-glass {
+        padding: 0.7rem 0.875rem;
+        font-size: 0.875rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .auth-switch-glass {
+        font-size: 0.85rem;
+    }
+
+    .auth-checkbox-label {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 360px) {
+    .auth-card-glass {
+        padding: var(--spacing-md);
+    }
+
+    .auth-title-glass {
+        font-size: 1.25rem;
+    }
+
+    .auth-input-glass,
+    .auth-button-glass {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+}
+
+/* Paysage mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .auth-page {
+        padding: var(--spacing-sm);
+        align-items: flex-start;
+    }
+
+    .auth-card-glass {
+        margin: var(--spacing-sm) auto;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .auth-title-glass {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .auth-form-glass {
+        gap: var(--spacing-sm);
+    }
+}
+
+/* ===========================
+   DARK MODE SUPPORT
+   =========================== */
+@media (prefers-color-scheme: dark) {
+    .auth-card-glass {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .auth-input-glass {
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ===========================
+   REDUCED MOTION
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+@media print {
+    .auth-page {
+        background: white;
+    }
+
+    .auth-card-glass {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* ===========================
+   UTILITIES
+   =========================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: var(--spacing-sm);
+}
+
+.mt-2 {
+    margin-top: var(--spacing-md);
+}
+
+.mt-3 {
+    margin-top: var(--spacing-lg);
+}
+
+.mt-4 {
+    margin-top: var(--spacing-xl);
+}
+
+.mb-1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.mb-4 {
+    margin-bottom: var(--spacing-xl);
+}

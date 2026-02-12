@@ -1,20 +1,25 @@
-// Auth.tsx
 import { useState, type FC } from "react";
 import { auth } from "../services/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+import "../styles/Auth.css";
 
 interface AuthProps {
   onLogin: () => void;
 }
 
 const Auth: FC<AuthProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [isSignup, setIsSignup] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     try {
       if (isSignup) {
         await createUserWithEmailAndPassword(auth, email, password);
@@ -28,17 +33,47 @@ const Auth: FC<AuthProps> = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <h2>{isSignup ? "Sign Up" : "Login"}</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-        <button type="submit">{isSignup ? "Sign Up" : "Login"}</button>
-      </form>
-      <button onClick={() => setIsSignup(!isSignup)}>
-        {isSignup ? "Already have an account?" : "Create an account"}
-      </button>
-      {error && <p style={{color:"red"}}>{error}</p>}
+    <div className="auth-page">
+      <div className="auth-card-glass">
+        <h2 className="auth-title-glass">
+          {isSignup ? "Créer un compte" : "Connexion"}
+        </h2>
+
+        <form className="auth-form-glass" onSubmit={handleSubmit}>
+          <input
+            className="auth-input-glass"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            className="auth-input-glass"
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button className="auth-button-glass" type="submit">
+            {isSignup ? "S'inscrire" : "Se connecter"}
+          </button>
+        </form>
+
+        <button
+          className="auth-switch-glass"
+          onClick={() => setIsSignup(!isSignup)}
+        >
+          {isSignup
+            ? "Déjà un compte ? Se connecter"
+            : "Créer un compte"}
+        </button>
+
+        {error && <p className="auth-error-glass">{error}</p>}
+      </div>
     </div>
   );
 };

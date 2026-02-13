@@ -6,5 +6,11 @@
     "axe/forms": "off",
     "no-inline-styles": "off",
     "axe/aria": "off"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not ios_saf <= 18.5",
+    "not safari <= 18.5"
+  ]
 }

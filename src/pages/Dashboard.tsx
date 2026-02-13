@@ -7,7 +7,7 @@ import {
   query,
   updateDoc,
   where,
-  orderBy,
+  // orderBy,
 } from "firebase/firestore";
 import { db } from "../services/firebase";
 
@@ -33,7 +33,7 @@ const PRIORITY_ORDER: Record<TaskPriority, number> = {
 };
 
 const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-const DAY_INDEXES = [1, 2, 3, 4, 5, 6, 0]; // lundi à dimanche
+// const DAY_INDEXES = [1, 2, 3, 4, 5, 6, 0]; // lundi à dimanche
 
 interface DashboardProps {
   user: {

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
+
 import MainScreen from "./pages/MainScreen";
 import SplashScreen from "./pages/SplashScreen";
 import Auth from "./pages/auth";
+
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from "./services/firebase";
-
+import ForgotPassword from "./pages/forgotPassword";
 function App() {
   const [appReady, setAppReady] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -23,24 +26,28 @@ function App() {
     return <SplashScreen />;
   }
 
-  // ❌ Pas connecté → Auth
-  if (!user) {
-    return (
-      <Auth
-        onLogin={() => {
-          // Rien à faire ici 😌
-          // onAuthStateChanged va se déclencher automatiquement
-          console.log("Login réussi");
-        }}
-      />
-    );
-  }
-
-  // ✅ Connecté → App principale
   return (
-    <div className="app-content">
-      <MainScreen user={user} />
-    </div>
+    <Routes>
+      {/* ❌ Pas connecté */}
+      <Route
+        path="/auth"
+        element={!user ? <Auth onLogin={function (): void {
+          throw new Error("Function not implemented.");
+        }} /> : <Navigate to="/" replace />}
+      />
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword />}
+      />
+      {/* ✅ Connecté */}
+      <Route
+        path="/"
+        element={user ? <MainScreen user={user} /> : <Navigate to="/auth" replace />}
+      />
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 

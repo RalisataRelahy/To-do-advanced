@@ -182,8 +182,8 @@ body {
     font-size: 0.9375rem;
     font-weight: 400;
     transition: all var(--transition-normal);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .auth-input-glass::placeholder {

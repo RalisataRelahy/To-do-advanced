@@ -54,7 +54,9 @@ export default function MainScreen({ user }: MainScreenProps) {
             />
             <h1 className="app-title">LifeBoard</h1>
           </div>
-
+          <div className="current-content">
+            <p><strong>Connecter en tant que </strong>{user.email}</p>
+          </div>
 
           {/* Bouton burger */}
           <button

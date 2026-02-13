@@ -4,19 +4,20 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-
+import { useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
 interface AuthProps {
   onLogin: () => void;
 }
 
-const Auth: FC<AuthProps> = ({ onLogin }) => {
+const Auth: FC<AuthProps> = (/*{ onLogin }*/) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -26,10 +27,15 @@ const Auth: FC<AuthProps> = ({ onLogin }) => {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      onLogin();
+      // onLogin();
+      navigate("/", { replace: true });
     } catch (err: any) {
       setError(err.message);
     }
+  };
+
+  const goToForgotPassword = () => {
+    navigate("/forgot-password");
   };
 
   return (
@@ -70,7 +76,17 @@ const Auth: FC<AuthProps> = ({ onLogin }) => {
           {isSignup
             ? "Déjà un compte ? Se connecter"
             : "Créer un compte"}
+
         </button>
+        {!isSignup && (
+          <button
+            className="auth-switch-glass"
+            onClick={goToForgotPassword}
+          >
+            Mot de passe oublié ?
+          </button>
+        )}
+
 
         {error && <p className="auth-error-glass">{error}</p>}
       </div>

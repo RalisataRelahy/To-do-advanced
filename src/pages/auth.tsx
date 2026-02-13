@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import "../styles/Auth.css";
+import "../styles/auth.css";
 
 interface AuthProps {
   onLogin: () => void;

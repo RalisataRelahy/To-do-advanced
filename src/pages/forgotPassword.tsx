@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { resetPassword } from "../services/resetPassword";
-import "../styles/auth.css"
+import "../styles/auth.css";
+
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
